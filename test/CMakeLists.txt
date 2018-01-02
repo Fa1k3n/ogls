@@ -2,8 +2,6 @@
 #pkg_check_modules(GTEST REQUIRED gtest>=1.7.0)
 #pkg_check_modules(GMOCK REQUIRED gmock>=1.7.0)
 
-SET(COVERAGE OFF CACHE BOOL "Coverage")
-
 include(gtest.cmake)
 
 set(sources
@@ -34,6 +32,6 @@ target_link_libraries(
 	
 )
 
-if (COVERAGE)
+#if (COVERAGE)
     target_compile_options(unittest PRIVATE --coverage)
-endif()
+#endif()
