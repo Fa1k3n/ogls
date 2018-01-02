@@ -11,6 +11,7 @@ before_install:
  - cd googletest-release-1.8.0
  - sudo cmake -DBUILD_SHARED_LIBS=ON .
  - sudo make
+ - sudo cp -a google*/libg*.so /usr/lib/
  - sudo make install
  - cd ..
  - sudo wget https://downloads.sourceforge.net/project/glew/glew/2.1.0/glew-2.1.0.tgz
