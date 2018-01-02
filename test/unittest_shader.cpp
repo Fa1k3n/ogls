@@ -109,6 +109,7 @@ TEST(ShaderTest, solidColorShaderRGBConstruct) {
 	ogls::ColorRGB c(1.0f, 0.1f, 0.1f);
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_ShaderSource(_, _, SourceContains("vec4(1.000f, 0.100f, 0.100f, 1.0f);"), NULL));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillOnce(SetArgPointee<2>(1));
 	ogls::SolidColorShader scs(c);
 	ASSERT_EQ(scs.type(), GL_FRAGMENT_SHADER);
 	ASSERT_EQ(scs.color(), c);
@@ -118,6 +119,7 @@ TEST(ShaderTest, solidColorShaderEnumConstruct) {
 	NiceMock<GLMock> mock;
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_ShaderSource(_, _, SourceContains("vec4(1.000f, 0.000f, 0.000f, 1.0f);"), NULL));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillOnce(SetArgPointee<2>(1));
 	ogls::SolidColorShader scs(ogls::RED);
 	ASSERT_EQ(scs.type(), GL_FRAGMENT_SHADER);
 	ASSERT_EQ(scs.color(), ogls::ColorRGB(1.0f, 0.0f, 0.0f));

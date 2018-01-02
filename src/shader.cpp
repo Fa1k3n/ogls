@@ -90,4 +90,5 @@ SolidColorShader::SolidColorShader(ColorRGB color) {
 		"	FragColor = vec4(%.3ff, %.3ff, %.3ff, 1.0f);"
 		"}", color.r, color.g, color.b);
 	addSource(buff);
+	compile();
 }
