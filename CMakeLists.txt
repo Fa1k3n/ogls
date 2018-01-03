@@ -20,16 +20,16 @@ else()
 endif()
 
 include_directories(
-	include/ogls
-	src	
+	include
 )
 
 add_definitions(-DGL_GLEXT_PROTOTYPES)
 
 set(headers
-	include/ogls/shader.hpp
-	include/ogls/program.hpp
-	include/ogls/colors.hpp
+	include/shader.hpp
+	include/program.hpp
+	include/colors.hpp
+	src/colors_priv.hpp
 )
 
 set(sources
