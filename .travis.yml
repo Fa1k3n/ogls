@@ -14,7 +14,7 @@ before_install:
  - cd ..
  - pip install --user cpp-coveralls
 script: 
-  - cmake . && make && make unittest
+  - cmake -DCOVERAGE=1 . && make && make unittest
   - ./test/unittest
 after_success:
-  - coveralls --root . -E ".*gtest.*" -E ".*CMakeFiles.*"
+  - coveralls --root . -e test -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp"

@@ -24,7 +24,7 @@ target_include_directories(
 
 target_link_libraries(
 	unittest
-	PRIVATE --coverage
+	#PRIVATE --coverage
 	gtest
 	gmock
 	pthread
@@ -33,5 +33,5 @@ target_link_libraries(
 )
 
 #if (COVERAGE)
-    target_compile_options(unittest PRIVATE --coverage)
+    #target_compile_options(unittest PRIVATE --coverage)
 #endif()
