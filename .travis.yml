@@ -17,4 +17,4 @@ script:
   - cmake -DCOVERAGE=1 . && make && make unittest
   - ./test/unittest
 after_success:
-  - coveralls --root . -e test -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp"
+  - coveralls --root . -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
