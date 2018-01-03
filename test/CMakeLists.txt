@@ -22,5 +22,6 @@ target_link_libraries(
 	gmock
 	glmock
 	pthread
-	${CMAKE_CURRENT_SOURCE_DIR}/../libogls.a
+	${CMAKE_CURRENT_SOURCE_DIR}/../libogls.so
+	GL
 )

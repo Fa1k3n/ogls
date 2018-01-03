@@ -29,16 +29,23 @@ set(headers
 	include/shader.hpp
 	include/program.hpp
 	include/colors.hpp
-	src/colors_priv.hpp
 )
 
 set(sources
    src/shader.cpp
    src/program.cpp
-)
+   src/colors_priv.hpp
+ )
 
-add_library(ogls STATIC ${sources} ${headers})
+add_library(ogls SHARED ${sources} ${headers})
+set_property(TARGET ogls PROPERTY PUBLIC_HEADER ${headers})
+
 target_link_libraries(ogls /usr/lib64/libGLEW.a)
 
+install(
+	TARGETS ogls
+	LIBRARY DESTINATION lib
+	PUBLIC_HEADER DESTINATION include/ogls
+	)
 ### Basic test build
 add_subdirectory(test)
