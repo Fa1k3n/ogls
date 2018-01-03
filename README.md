@@ -3,9 +3,55 @@
 [![Build status](https://travis-ci.org/Fa1k3n/ogls.svg?branch=master)](https://travis-ci.org/Fa1k3n/ogls)
 [![Coverage Status](https://coveralls.io/repos/github/Fa1k3n/ogls/badge.svg?branch=master&service=github)](https://coveralls.io/github/Fa1k3n/ogls?branch=master&service=github)
 
-A small helper library to allow to easy create and use OpenGL GLSL shaders. 
+# Table of Contents
 
-Example using a uniform shader:
+- [Overview](#overview)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+
+# Overview
+
+A small helper library to allow to easy create and use OpenGL GLSL shaders. 
+ogls provides:
+* Super easy creating of uniform color shaders
+* Run-time openGL shading error checking via exceptions
+* Very easily create, build and use shaders in source 
+* A clean interface to shader uniforms
+
+# Installation
+
+```
+cmake .
+make
+sudo make install
+```
+
+# Usage
+
+With cmake just do
+
+```cmake
+find_package(ogls REQUIRED)
+include_directories(
+	...
+	${ogls_INCLUDE_DIR}
+	...
+	)
+target_link_libraries(
+	...
+	${ogls_LIBRARIES}
+	...
+	)
+```
+
+in your CMakeLists.txt and you are set to go.
+
+When linking manually link with libogls.so
+
+# Examples
+
+Creating and using a red shader
 
 ```c++
 ogls::SolidColorShader frags(ogls::RED);

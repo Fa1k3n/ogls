@@ -1,0 +1,16 @@
+# - Config file for the ogls package
+# It defines the following variables
+#  ogls_INCLUDE_DIRS - include directories for FooBar
+#  ogls_LIBRARIES    - libraries to link against
+ 
+# Compute paths
+get_filename_component(ogls_CMAKE_DIR "${CMAKE_CURRENT_LIST_FILE}" PATH)
+set(ogls_INCLUDE_DIRS "@CONF_INCLUDE_DIRS@")
+ 
+# Our library dependencies (contains definitions for IMPORTED targets)
+if(NOT TARGET ogls AND NOT ogls_BINARY_DIR)
+  include("${ogls_CMAKE_DIR}/oglsTargets.cmake")
+endif()
+ 
+# These are IMPORTED targets created by oglsTargets.cmake
+set(ogls_LIBRARIES ogls)
