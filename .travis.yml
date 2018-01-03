@@ -5,7 +5,7 @@ os:
   - linux
 before_install:
  - sudo apt-get -qq update
- - sudo apt-get install -y cmake
+ - sudo apt-get install -y cmake doxygen graphviz
  - sudo wget https://downloads.sourceforge.net/project/glew/glew/2.1.0/glew-2.1.0.tgz
  - sudo tar xf glew-2.1.0.tgz
  - cd glew-2.1.0
@@ -18,3 +18,4 @@ script:
   - ./test/unittest
 after_success:
   - coveralls --root . -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
+  - doxygen doxy.conf

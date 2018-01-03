@@ -27,6 +27,15 @@ namespace ogls {
 	class Shader {
 		friend Program;
 	public:
+		//! Shader creates a new shader object of a given type. 
+		/*!
+			Valid types are GL_VERTEX_SHADER and GL_FRAGMENT_SHADER.
+		
+			If unsuccessful it will throw an ShaderException
+			
+			\param shaderType the type of shader
+			\sa VertexShader(), FragmentShader()
+		*/
 		Shader(GLenum shaderType);
 		GLenum type();
 		Shader& addSource(std::istream &stream);
