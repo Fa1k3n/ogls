@@ -105,5 +105,6 @@ install(
 	LIBRARY DESTINATION lib
 	PUBLIC_HEADER DESTINATION include/ogls
 	)
+
 ### Basic test build
 add_subdirectory(test)
