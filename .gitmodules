@@ -1,9 +1,3 @@
-[submodule "test/gtest"]
-	path = test/gtest
-	url = https://github.com/google/googletest.git
 [submodule "test/external/gtest"]
 	path = test/external/gtest
 	url = https://github.com/google/googletest.git
-[submodule "test/external/glmock"]
-	path = test/external/glmock
-	url = https://github.com/darkenk/glmock.git
