@@ -39,5 +39,6 @@ set(sources
 
 add_library(ogls STATIC ${sources} ${headers})
 target_link_libraries(ogls /usr/lib64/libGLEW.a)
+
 ### Basic test build
 add_subdirectory(test)
