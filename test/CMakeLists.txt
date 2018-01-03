@@ -1,4 +1,5 @@
 include(cmake/gtest.cmake)
+include(cmake/gmock.cmake)
 
 set(sources
 	unittest_main.cpp
@@ -22,5 +23,4 @@ target_link_libraries(
 	gmock
 	pthread
 	${CMAKE_CURRENT_SOURCE_DIR}/../libogls.a
-	
 )
