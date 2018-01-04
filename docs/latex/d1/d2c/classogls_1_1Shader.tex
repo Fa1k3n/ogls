@@ -1,0 +1,65 @@
+\hypertarget{classogls_1_1Shader}{\section{ogls\-:\-:Shader Class Reference}
+\label{classogls_1_1Shader}\index{ogls\-::\-Shader@{ogls\-::\-Shader}}
+}
+
+
+Inheritance diagram for ogls\-:\-:Shader\-:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{de/dba/classogls_1_1Shader__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classogls_1_1Shader_ac7b2a580207cd2ad1816cba87d40cc3a}{Shader} (G\-Lenum shader\-Type)
+\begin{DoxyCompactList}\small\item\em \hyperlink{classogls_1_1Shader}{Shader} creates a new shader object of a given type. \end{DoxyCompactList}\item 
+\hypertarget{classogls_1_1Shader_a9b5b5ec13be60e26176f334f30c112bc}{G\-Lenum {\bfseries type} ()}\label{classogls_1_1Shader_a9b5b5ec13be60e26176f334f30c112bc}
+
+\item 
+\hypertarget{classogls_1_1Shader_addde16b272f54d6de49b613f86fb409f}{\hyperlink{classogls_1_1Shader}{Shader} \& {\bfseries add\-Source} (std\-::istream \&stream)}\label{classogls_1_1Shader_addde16b272f54d6de49b613f86fb409f}
+
+\item 
+\hypertarget{classogls_1_1Shader_aa36972c2b14eb097b4bd0fd668ba60df}{\hyperlink{classogls_1_1Shader}{Shader} \& {\bfseries add\-Source} (std\-::string source)}\label{classogls_1_1Shader_aa36972c2b14eb097b4bd0fd668ba60df}
+
+\item 
+\hypertarget{classogls_1_1Shader_aee621433b4ced68bd9e801e5046884f1}{\hyperlink{classogls_1_1Shader}{Shader} \& {\bfseries compile} ()}\label{classogls_1_1Shader_aee621433b4ced68bd9e801e5046884f1}
+
+\item 
+\hypertarget{classogls_1_1Shader_adfce40703b571145882fcc1538316c8a}{\hyperlink{classogls_1_1Shader}{Shader} \& {\bfseries set\-Version} (short major, short minor)}\label{classogls_1_1Shader_adfce40703b571145882fcc1538316c8a}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classogls_1_1Shader_ac7b2a580207cd2ad1816cba87d40cc3a}{\index{ogls\-::\-Shader@{ogls\-::\-Shader}!Shader@{Shader}}
+\index{Shader@{Shader}!ogls::Shader@{ogls\-::\-Shader}}
+\subsubsection[{Shader}]{\setlength{\rightskip}{0pt plus 5cm}Shader\-::\-Shader (
+\begin{DoxyParamCaption}
+\item[{G\-Lenum}]{shader\-Type}
+\end{DoxyParamCaption}
+)}}\label{classogls_1_1Shader_ac7b2a580207cd2ad1816cba87d40cc3a}
+
+
+\hyperlink{classogls_1_1Shader}{Shader} creates a new shader object of a given type. 
+
+Valid types are G\-L\-\_\-\-V\-E\-R\-T\-E\-X\-\_\-\-S\-H\-A\-D\-E\-R and G\-L\-\_\-\-F\-R\-A\-G\-M\-E\-N\-T\-\_\-\-S\-H\-A\-D\-E\-R.
+
+If unsuccessful it will throw an \hyperlink{structogls_1_1ShaderException}{Shader\-Exception}
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader\-Type} & the type of shader \\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See Also}
+Vertex\-Shader(), Fragment\-Shader() 
+\end{DoxySeeAlso}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+include/shader.\-hpp\item 
+src/shader.\-cpp\end{DoxyCompactItemize}
