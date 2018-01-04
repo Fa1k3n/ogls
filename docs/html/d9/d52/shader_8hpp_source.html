@@ -106,7 +106,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        <a class="code" href="../../d2/d41/structogls_1_1ShaderException.html">ShaderException</a>(std::string err) {</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            m_err = err;</div>
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;        }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">const</span> <span class="keywordtype">char</span> * what () <span class="keyword">const</span> <span class="keywordflow">throw</span> () {</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span> * what () <span class="keyword">const</span> <span class="keywordflow">throw</span> () {</div>
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            <span class="keywordflow">return</span> m_err.c_str();</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;        }</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;        std::string m_err;</div>
@@ -124,52 +124,53 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;        <a class="code" href="../../d1/d2c/classogls_1_1Shader.html">Shader</a>&amp; <a class="code" href="../../d1/d2c/classogls_1_1Shader.html#adfce40703b571145882fcc1538316c8a">setVersion</a>(<span class="keywordtype">short</span> major, <span class="keywordtype">short</span> minor);</div>
 <div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
 <div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        GLenum m_type;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        GLint m_id;</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        <span class="keywordtype">bool</span> m_isCompiled;</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">short</span> m_version[2];</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">char</span>* getVersionStr();</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">void</span> transferSources();</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        std::vector&lt;const char*&gt; m_sources;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    };</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="../../dd/da1/classogls_1_1VertexShader.html">   49</a></span>&#160;    <span class="keyword">class </span><a class="code" href="../../dd/da1/classogls_1_1VertexShader.html">VertexShader</a> : <span class="keyword">public</span> <a class="code" href="../../d1/d2c/classogls_1_1Shader.html">Shader</a> {</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="../../dd/da1/classogls_1_1VertexShader.html">VertexShader</a>() : <a class="code" href="../../d1/d2c/classogls_1_1Shader.html#ac7b2a580207cd2ad1816cba87d40cc3a">Shader</a>(GL_VERTEX_SHADER) {}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="../../dd/da1/classogls_1_1VertexShader.html">VertexShader</a>(std::string source);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    };</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;</div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="../../d5/d46/classogls_1_1FragmentShader.html">   55</a></span>&#160;    <span class="keyword">class </span><a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a> : <span class="keyword">public</span> <a class="code" href="../../d1/d2c/classogls_1_1Shader.html">Shader</a> {</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">public</span>:</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a>() : <a class="code" href="../../d1/d2c/classogls_1_1Shader.html#ac7b2a580207cd2ad1816cba87d40cc3a">Shader</a>(GL_FRAGMENT_SHADER) {}</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a>(std::string source);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    };</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;</div>
-<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="../../d7/d31/classogls_1_1SolidColorShader.html">   61</a></span>&#160;    <span class="keyword">class </span><a class="code" href="../../d7/d31/classogls_1_1SolidColorShader.html">SolidColorShader</a> : <span class="keyword">public</span> <a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a> {</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">public</span>: </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <a class="code" href="../../d7/d31/classogls_1_1SolidColorShader.html#a7b87d06986b83421c7526e3a6f02f516">SolidColorShader</a>(<a class="code" href="../../d4/d4d/structogls_1_1ColorRGB.html">ColorRGB</a> color);</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="../../d7/d31/classogls_1_1SolidColorShader.html#a7b87d06986b83421c7526e3a6f02f516">SolidColorShader</a>(Color color);</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="../../d4/d4d/structogls_1_1ColorRGB.html">ColorRGB</a> color() { <span class="keywordflow">return</span> m_color; }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keyword">private</span>:</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="../../d4/d4d/structogls_1_1ColorRGB.html">ColorRGB</a> m_color;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    };</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;}</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;        <span class="keywordtype">bool</span> isCompiled() { <span class="keywordflow">return</span> m_isCompiled; }</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        GLenum m_type;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        GLint m_id;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="keywordtype">bool</span> m_isCompiled;</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        <span class="keywordtype">short</span> m_version[2];</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        <span class="keywordtype">char</span>* getVersionStr();</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        <span class="keywordtype">void</span> transferSources();</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;        std::vector&lt;const char*&gt; m_sources;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    };</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="../../dd/da1/classogls_1_1VertexShader.html">   50</a></span>&#160;    <span class="keyword">class </span><a class="code" href="../../dd/da1/classogls_1_1VertexShader.html">VertexShader</a> : <span class="keyword">public</span> <a class="code" href="../../d1/d2c/classogls_1_1Shader.html">Shader</a> {</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="../../dd/da1/classogls_1_1VertexShader.html">VertexShader</a>() : <a class="code" href="../../d1/d2c/classogls_1_1Shader.html#ac7b2a580207cd2ad1816cba87d40cc3a">Shader</a>(GL_VERTEX_SHADER) {}</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="../../dd/da1/classogls_1_1VertexShader.html">VertexShader</a>(std::string source);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    };</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;</div>
+<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="../../d5/d46/classogls_1_1FragmentShader.html">   56</a></span>&#160;    <span class="keyword">class </span><a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a> : <span class="keyword">public</span> <a class="code" href="../../d1/d2c/classogls_1_1Shader.html">Shader</a> {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a>() : <a class="code" href="../../d1/d2c/classogls_1_1Shader.html#ac7b2a580207cd2ad1816cba87d40cc3a">Shader</a>(GL_FRAGMENT_SHADER) {}</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        <a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a>(std::string source);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    };</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="../../d7/d31/classogls_1_1SolidColorShader.html">   62</a></span>&#160;    <span class="keyword">class </span><a class="code" href="../../d7/d31/classogls_1_1SolidColorShader.html">SolidColorShader</a> : <span class="keyword">public</span> <a class="code" href="../../d5/d46/classogls_1_1FragmentShader.html">FragmentShader</a> {</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">public</span>: </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        <a class="code" href="../../d7/d31/classogls_1_1SolidColorShader.html#a7b87d06986b83421c7526e3a6f02f516">SolidColorShader</a>(<a class="code" href="../../d4/d4d/structogls_1_1ColorRGB.html">ColorRGB</a> color);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <a class="code" href="../../d7/d31/classogls_1_1SolidColorShader.html#a7b87d06986b83421c7526e3a6f02f516">SolidColorShader</a>(Color color);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="../../d4/d4d/structogls_1_1ColorRGB.html">ColorRGB</a> color() { <span class="keywordflow">return</span> m_color; }</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="../../d4/d4d/structogls_1_1ColorRGB.html">ColorRGB</a> m_color;</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    };</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;}</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="ttc" id="classogls_1_1Shader_html_a9b5b5ec13be60e26176f334f30c112bc"><div class="ttname"><a href="../../d1/d2c/classogls_1_1Shader.html#a9b5b5ec13be60e26176f334f30c112bc">ogls::Shader::type</a></div><div class="ttdeci">GLenum type()</div><div class="ttdef"><b>Definition:</b> shader.cpp:32</div></div>
-<div class="ttc" id="classogls_1_1FragmentShader_html"><div class="ttname"><a href="../../d5/d46/classogls_1_1FragmentShader.html">ogls::FragmentShader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:55</div></div>
+<div class="ttc" id="classogls_1_1FragmentShader_html"><div class="ttname"><a href="../../d5/d46/classogls_1_1FragmentShader.html">ogls::FragmentShader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:56</div></div>
 <div class="ttc" id="classogls_1_1Shader_html_ac7b2a580207cd2ad1816cba87d40cc3a"><div class="ttname"><a href="../../d1/d2c/classogls_1_1Shader.html#ac7b2a580207cd2ad1816cba87d40cc3a">ogls::Shader::Shader</a></div><div class="ttdeci">Shader(GLenum shaderType)</div><div class="ttdoc">creates a new shader object of a given type. </div><div class="ttdef"><b>Definition:</b> shader.cpp:18</div></div>
 <div class="ttc" id="structogls_1_1ShaderException_html"><div class="ttname"><a href="../../d2/d41/structogls_1_1ShaderException.html">ogls::ShaderException</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:17</div></div>
 <div class="ttc" id="classogls_1_1Shader_html"><div class="ttname"><a href="../../d1/d2c/classogls_1_1Shader.html">ogls::Shader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:27</div></div>
 <div class="ttc" id="classogls_1_1Shader_html_addde16b272f54d6de49b613f86fb409f"><div class="ttname"><a href="../../d1/d2c/classogls_1_1Shader.html#addde16b272f54d6de49b613f86fb409f">ogls::Shader::addSource</a></div><div class="ttdeci">Shader &amp; addSource(std::istream &amp;stream)</div><div class="ttdoc">adds a istream source to the shader </div><div class="ttdef"><b>Definition:</b> shader.cpp:53</div></div>
-<div class="ttc" id="classogls_1_1VertexShader_html"><div class="ttname"><a href="../../dd/da1/classogls_1_1VertexShader.html">ogls::VertexShader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:49</div></div>
+<div class="ttc" id="classogls_1_1VertexShader_html"><div class="ttname"><a href="../../dd/da1/classogls_1_1VertexShader.html">ogls::VertexShader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:50</div></div>
 <div class="ttc" id="classogls_1_1SolidColorShader_html_a7b87d06986b83421c7526e3a6f02f516"><div class="ttname"><a href="../../d7/d31/classogls_1_1SolidColorShader.html#a7b87d06986b83421c7526e3a6f02f516">ogls::SolidColorShader::SolidColorShader</a></div><div class="ttdeci">SolidColorShader(ColorRGB color)</div><div class="ttdoc">creates a new solid shader object with the given RGB color </div><div class="ttdef"><b>Definition:</b> shader.cpp:179</div></div>
 <div class="ttc" id="classogls_1_1Shader_html_aee621433b4ced68bd9e801e5046884f1"><div class="ttname"><a href="../../d1/d2c/classogls_1_1Shader.html#aee621433b4ced68bd9e801e5046884f1">ogls::Shader::compile</a></div><div class="ttdeci">Shader &amp; compile()</div><div class="ttdoc">compiles the shader </div><div class="ttdef"><b>Definition:</b> shader.cpp:89</div></div>
 <div class="ttc" id="classogls_1_1Shader_html_adfce40703b571145882fcc1538316c8a"><div class="ttname"><a href="../../d1/d2c/classogls_1_1Shader.html#adfce40703b571145882fcc1538316c8a">ogls::Shader::setVersion</a></div><div class="ttdeci">Shader &amp; setVersion(short major, short minor)</div><div class="ttdoc">sets the version header of the shader program </div><div class="ttdef"><b>Definition:</b> shader.cpp:116</div></div>
 <div class="ttc" id="structogls_1_1ColorRGB_html"><div class="ttname"><a href="../../d4/d4d/structogls_1_1ColorRGB.html">ogls::ColorRGB</a></div><div class="ttdef"><b>Definition:</b> colors.hpp:8</div></div>
 <div class="ttc" id="classogls_1_1Program_html"><div class="ttname"><a href="../../d6/d07/classogls_1_1Program.html">ogls::Program</a></div><div class="ttdef"><b>Definition:</b> program.hpp:24</div></div>
-<div class="ttc" id="classogls_1_1SolidColorShader_html"><div class="ttname"><a href="../../d7/d31/classogls_1_1SolidColorShader.html">ogls::SolidColorShader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:61</div></div>
+<div class="ttc" id="classogls_1_1SolidColorShader_html"><div class="ttname"><a href="../../d7/d31/classogls_1_1SolidColorShader.html">ogls::SolidColorShader</a></div><div class="ttdef"><b>Definition:</b> shader.hpp:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
