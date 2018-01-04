@@ -19,7 +19,7 @@ script:
 after_success:
   - coveralls --root . -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
   - doxygen docs/doxy.conf
-  - .travis/push.sh
+  - sudo .travis/push.sh
 
 #deploy:
 #  provider: pages
