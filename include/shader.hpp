@@ -18,7 +18,7 @@ namespace ogls {
 		ShaderException(std::string err) {
 			m_err = err;
 		}
-		const char * what () const throw () {
+		virtual const char * what () const throw () {
       		return m_err.c_str();
    		}
    		std::string m_err;
@@ -36,6 +36,7 @@ namespace ogls {
 		Shader& setVersion(short major, short minor);
 
 	private:
+		bool isCompiled() { return m_isCompiled; }
 		GLenum m_type;
 		GLint m_id;
 		bool m_isCompiled;

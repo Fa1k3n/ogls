@@ -15,7 +15,7 @@ namespace ogls {
 		ProgramException(std::string err) {
 			m_err = err;
 		}
-		const char * what () const throw () {
+		virtual const char * what () const throw () {
       		return m_err.c_str();
    		}
    		std::string m_err;
@@ -35,6 +35,7 @@ namespace ogls {
 		Shader* getShaderByType(GLenum type);
 
 		GLuint m_id;
+		bool m_isLinked;
 	};
 
 	template <typename T>

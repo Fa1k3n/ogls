@@ -6,6 +6,7 @@ using namespace ogls;
 
 Program::Program() {
 	m_id = glCreateProgram();
+	m_isLinked = false;
 	if (m_id == 0)
 		throw ProgramException("Failed to create program");
 }		
@@ -13,6 +14,9 @@ Program::Program() {
 Program& Program::addShader(Shader &shader) {
 	if(getShaderByType(shader.type())) {
 		throw ProgramException("Only one shader of a type is allowed");
+	}
+	if(!shader.isCompiled()) {
+		shader.compile();
 	}
 	m_shaders.push_back(shader);
 	glAttachShader(m_id, shader.m_id);
@@ -25,7 +29,7 @@ Program& Program::addShader(Shader &shader) {
 		else
 			throw ProgramException("unknown error occurred");
 	}
-
+	m_isLinked = false;
 	return *this;
 }
 
@@ -41,18 +45,23 @@ Shader* Program::getShaderByType(GLenum type) {
 }
 
 Program& Program::link() {
-	glLinkProgram(m_id);
-	int  success;
-	char infoLog[512];
-	glGetProgramiv(m_id, GL_LINK_STATUS, &success);
-	if(!success) {
-    	glGetProgramInfoLog(m_id, 512, NULL, infoLog);
-    	throw ProgramException(infoLog);
+	if(!m_isLinked) {
+		glLinkProgram(m_id);
+		int  success;
+		char infoLog[512];
+		glGetProgramiv(m_id, GL_LINK_STATUS, &success);
+		if(!success) {
+	    	glGetProgramInfoLog(m_id, 512, NULL, infoLog);
+	    	throw ProgramException(infoLog);
+		}
+		m_isLinked = true;
 	}
 	return *this;
 }
 
 Program& Program::use() {
+	if(!m_isLinked)
+		link();
 	glUseProgram(m_id);
 	GLenum err = glGetError();
 	if(err != GL_NO_ERROR) {

@@ -19,6 +19,6 @@ script:
   - ./test/unittest
 after_success:
   - cd ..
-  - coveralls --root . -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
+  - coveralls --root . -e build/test -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
   - doxygen docs/doxy.conf
   - sudo .travis/push.sh
