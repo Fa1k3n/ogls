@@ -1,6 +1,6 @@
 # ogls - An OpenGL shader loader library
 
-[![Build status](https://travis-ci.org/Fa1k3n/ogls.svg?branch=master)](https://travis-ci.org/Fa1k3n/ogls)
+[![Build status](https://travis-ci.org/fa1k3n/ogls.svg?branch=master)](https://travis-ci.org/fa1k3n/ogls)
 [![Coverage Status](https://coveralls.io/repos/github/Fa1k3n/ogls/badge.svg?branch=master&service=github)](https://coveralls.io/github/Fa1k3n/ogls?branch=master&service=github)
 
 # Table of Contents
