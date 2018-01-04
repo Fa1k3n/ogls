@@ -55,6 +55,7 @@ TEST(ProgramTest, linkBasicProgram) {
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_CreateProgram()).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_LinkProgram(1));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
 	EXPECT_CALL(mock, gl_GetProgramiv(_, GL_LINK_STATUS, _)).WillOnce(SetArgPointee<2>(1));
 
 	auto p = ogls::Program();
@@ -70,6 +71,7 @@ TEST(ProgramTest, failingToLinkThrowsException) {
 	EXPECT_CALL(mock, gl_CreateProgram()).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_LinkProgram(1));
 	EXPECT_CALL(mock, gl_GetProgramiv(_, GL_LINK_STATUS, _)).WillOnce(SetArgPointee<2>(0));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
 
 	auto p = ogls::Program();
 	p.addShader(ogls::FragmentShader().addSource("foo bar"));
@@ -94,6 +96,8 @@ TEST(ProgramTest, useProgram) {
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_CreateProgram()).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_GetProgramiv(_, GL_LINK_STATUS, _)).WillOnce(SetArgPointee<2>(1));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
+
 	EXPECT_CALL(mock, gl_UseProgram(1));
 	auto p = ogls::Program();
 	p.addShader(ogls::FragmentShader().addSource("foo bar")).link().use();
@@ -104,6 +108,8 @@ TEST(ProgramTest, useProgramWithError) {
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_CreateProgram()).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_GetProgramiv(_, GL_LINK_STATUS, _)).WillOnce(SetArgPointee<2>(1));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
+
 	auto p = ogls::Program();
 	p.addShader(ogls::FragmentShader().addSource("foo bar")).link();
 
@@ -128,6 +134,7 @@ TEST(ProgramTest, setUniform) {
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_CreateProgram()).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_GetProgramiv(_, GL_LINK_STATUS, _)).WillOnce(SetArgPointee<2>(1));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
 	EXPECT_CALL(mock, gl_GetUniformLocation(1, "baz")).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_Uniform1f(1, 1.0f));
 	auto p = ogls::Program();
@@ -140,6 +147,7 @@ TEST(ProgramTest, setUniform3) {
 	EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
 	EXPECT_CALL(mock, gl_CreateProgram()).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_GetProgramiv(_, GL_LINK_STATUS, _)).WillOnce(SetArgPointee<2>(1));
+	EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
 	EXPECT_CALL(mock, gl_GetUniformLocation(1, "baz")).WillOnce(Return(1));
 	EXPECT_CALL(mock, gl_Uniform3f(1, 1.0f, 1.0f, 1.0f));
 	auto p = ogls::Program();
