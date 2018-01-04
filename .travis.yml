@@ -18,4 +18,13 @@ script:
   - ./test/unittest
 after_success:
   - coveralls --root . -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
-  - doxygen doxy.conf
+  - doxygen docs/doxy.conf
+  - .travis/push.sh
+
+#deploy:
+#  provider: pages
+#  local_dir: ${TRAVIS_BUILD_DIR}/docs
+#  skip_cleanup: true
+#  github_token: $GITHUB_TOKEN
+#  on:
+#    branch: master
