@@ -18,6 +18,7 @@ script:
   - cmake -DCOVERAGE=1 .. && make && make unittest
   - ./test/unittest
 after_success:
+  - cd ..
   - coveralls --root . -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
-  - cd .. && doxygen docs/doxy.conf
+  - doxygen docs/doxy.conf
   - sudo .travis/push.sh
