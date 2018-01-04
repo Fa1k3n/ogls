@@ -147,3 +147,34 @@ TEST(ShaderTest, errorCanBeThrownWhenAddingShader) {
 	EXPECT_THROW(ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar"), ogls::ShaderException);
 	EXPECT_THROW(ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar"), ogls::ShaderException);
 }
+
+TEST(ShaderTest, compileIsOnlyCalledWhenNeeded) {
+	// If nothing has changed, glCompileShader is only called once
+	{
+		NiceMock<GLMock> mock;
+		EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
+		EXPECT_CALL(mock, gl_CompileShader(1)).Times(1);
+		EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillOnce(SetArgPointee<2>(1));
+		auto shdr = ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar").compile();
+		shdr.compile();
+	}
+
+	// But if a source was added then it will be called again
+	{
+		NiceMock<GLMock> mock;
+		EXPECT_CALL(mock, gl_CreateShader(_)).WillRepeatedly(Return(1));
+		EXPECT_CALL(mock, gl_CompileShader(1)).Times(2);
+		EXPECT_CALL(mock, gl_GetShaderiv(_, GL_COMPILE_STATUS, _)).WillRepeatedly(SetArgPointee<2>(1));
+		auto shdr = ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar").compile();
+		shdr.addSource("baz fiz");
+		shdr.compile();
+	}
+}
+
+TEST(ShaderTest, shaderExceptionHasReadableErrors) {
+	try {
+		ogls::Shader(2);
+	} catch (ogls::ShaderException e) {
+		ASSERT_STREQ("Not a valid shader type", e.what());
+	}
+}
