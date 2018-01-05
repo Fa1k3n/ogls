@@ -18,8 +18,8 @@ Program& Program::addShader(Shader &shader) {
 	if(!shader.isCompiled()) {
 		shader.compile();
 	}
-	m_shaders.push_back(shader);
-	glAttachShader(m_id, shader.m_id);
+	m_shaders.push_back(&shader);
+	glAttachShader(m_id, shader.id());
 	GLenum err = glGetError();
 	if(err != GL_NO_ERROR) {
 		if(err == GL_INVALID_VALUE)
@@ -36,8 +36,9 @@ Program& Program::addShader(Shader &shader) {
 Shader* Program::getShaderByType(GLenum type) {
 	int i = 0;
 	for(auto shader : m_shaders) {
-		if (shader.type() == type) {
-			return &m_shaders[i];
+		//std::cout << "Comparing type: " << type << " " << shader.type() << std::endl;
+		if (shader->type() == type) {
+			return m_shaders[i];
 		}
 		i ++;
 	}
@@ -45,7 +46,7 @@ Shader* Program::getShaderByType(GLenum type) {
 }
 
 Program& Program::link() {
-	if(!m_isLinked) {
+	if(m_shaders.size() > 0 && !m_isLinked) {
 		glLinkProgram(m_id);
 		int  success;
 		char infoLog[512];

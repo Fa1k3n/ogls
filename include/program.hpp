@@ -31,9 +31,9 @@ namespace ogls {
 		Program& link();
 		Program& use();
 	private:
-		std::vector<Shader> m_shaders;
 		Shader* getShaderByType(GLenum type);
 
+		std::vector<Shader*> m_shaders;
 		GLuint m_id;
 		bool m_isLinked;
 	};

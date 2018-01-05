@@ -27,24 +27,30 @@ namespace ogls {
 	class Shader {
 		friend Program;
 	public:
-
+		Shader() {}  // This is for testability
 		Shader(GLenum shaderType);
-		GLenum type();
-		Shader& addSource(std::istream &stream);
-		Shader& addSource(std::string source);
-		Shader& compile();
-		Shader& setVersion(short major, short minor);
+		//Shader(const Shader&);
+
+		virtual ~Shader() {}
+		virtual GLenum type();
+		virtual Shader& addSource(std::istream &stream);
+		virtual Shader& addSource(std::string source);
+		virtual Shader& compile();
+		virtual Shader& setVersion(short major, short minor);
+
+	protected:
+		virtual bool isCompiled() { return m_isCompiled; }
+		virtual GLint id() { return m_id; }
 
 	private:
-		bool isCompiled() { return m_isCompiled; }
+		char* getVersionStr();
+		void transferSources();
+
 		GLenum m_type;
 		GLint m_id;
 		bool m_isCompiled;
 		short m_version[2];
-		char* getVersionStr();
-		void transferSources();
 		std::vector<const char*> m_sources;
-
 	};
 
 	class VertexShader : public Shader {
