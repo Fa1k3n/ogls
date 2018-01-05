@@ -53,7 +53,7 @@ Creating and using a red shader
 
 ```c++
 ogls::SolidColorShader frags(ogls::RED);
-auto prog = ogls::Program().addShader(frags).link();
+auto prog = ogls::Program().addShader(frags);
 
 // ... do normal gl operations ...
 prog.use();
@@ -89,7 +89,7 @@ auto frags = ogls::FragmentShader().addSource("
 	}
 ");
 
-auto prog = ogls::Program().addShader(frags.compile()).link();
+auto prog = ogls::Program().addShader(frags);
 
 // ... do normal gl operations ...
 prog.use();
@@ -102,7 +102,7 @@ Error handling is done via C++ exceptions
 ```c++
 try {
 	ogls::SolidColorShader frags(ogls::RED);
-	auto prog = ogls::Program().addShader(frags).link();
+	auto prog = ogls::Program().addShader(frags).use();
 } catch ogls::ProgramException {
 
 } catch ogls::ShaderException {
