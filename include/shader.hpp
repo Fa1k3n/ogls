@@ -29,7 +29,6 @@ namespace ogls {
 	public:
 		Shader() {}  // This is for testability
 		Shader(GLenum shaderType);
-		//Shader(const Shader&);
 
 		virtual ~Shader() {}
 		virtual GLenum type();

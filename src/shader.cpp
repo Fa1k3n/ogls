@@ -26,16 +26,6 @@ Shader::Shader(GLenum shaderType) {
 		throw ShaderException("Error creating shader"); 
 }
 
-/*Shader::Shader(const Shader& in) {
-	m_type = in.m_type;
-	m_isCompiled = in.m_isCompiled;
-	m_id = in.m_id;
-	for(int i = 0; i < 2; i ++)
-		m_version[i] = in.m_version[i];
-	m_sources = in.m_sources;
-}*/
-
-
 //! type is used to query the Shader of it's type
 //! \returns shader type
 GLenum Shader::type() {
@@ -96,7 +86,7 @@ Shader& Shader::addSource(std::string source) {
 */
 //! \returns reference to object
 Shader& Shader::compile() {
-	if (!m_isCompiled) {
+	if (m_sources.size() > 0 && !m_isCompiled) {
 		glCompileShader(m_id);
 		int  success;
 		char infoLog[512];

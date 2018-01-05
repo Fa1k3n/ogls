@@ -21,7 +21,6 @@ public:
 		ON_CALL(*this, compile()).WillByDefault(ReturnRef(*this));
 		ON_CALL(*this, addSource(_)).WillByDefault(ReturnRef(*this));
 	}
-	//ShaderMock(const ShaderMock&) {}
 	MOCK_METHOD0(type, GLenum());
 	MOCK_METHOD0(id, GLint());
 	MOCK_METHOD0(isCompiled, bool());
