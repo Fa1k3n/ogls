@@ -23,7 +23,8 @@ ogls provides:
 # Installation
 
 ```
-cmake .
+mkdir build && cd build
+cmake ..
 make
 sudo make install
 ```
@@ -34,14 +35,10 @@ With cmake just do
 
 ```cmake
 find_package(ogls REQUIRED)
-include_directories(
-	...
-	${ogls_INCLUDE_DIR}
-	...
-	)
+
 target_link_libraries(
 	...
-	${ogls_LIBRARIES}
+	ogls
 	...
 	)
 ```
