@@ -78,7 +78,6 @@ TEST_F(ProgramTest, addTwoShadersOfSameTypeWillFail) {
 	ogls::Program p;
 	p.addShader(otherShader);
 	ASSERT_THROW(p.addShader(m_shaderMock), ogls::ProgramException);
-	//ASSERT_THROW(p.addShader(otherShader), ogls::ProgramException);
 }
 
 TEST_F(ProgramTest, linkBasicProgram) {
