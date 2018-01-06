@@ -23,7 +23,8 @@ ogls provides:
 # Installation
 
 ```
-cmake .
+mkdir build && cd build
+cmake ..
 make
 sudo make install
 ```
@@ -34,14 +35,10 @@ With cmake just do
 
 ```cmake
 find_package(ogls REQUIRED)
-include_directories(
-	...
-	${ogls_INCLUDE_DIR}
-	...
-	)
+
 target_link_libraries(
 	...
-	${ogls_LIBRARIES}
+	ogls
 	...
 	)
 ```
@@ -56,7 +53,7 @@ Creating and using a red shader
 
 ```c++
 ogls::SolidColorShader frags(ogls::RED);
-auto prog = ogls::Program().addShader(frags).link();
+auto prog = ogls::Program().addShader(frags);
 
 // ... do normal gl operations ...
 prog.use();
@@ -92,7 +89,7 @@ auto frags = ogls::FragmentShader().addSource("
 	}
 ");
 
-auto prog = ogls::Program().addShader(frags.compile()).link();
+auto prog = ogls::Program().addShader(frags);
 
 // ... do normal gl operations ...
 prog.use();
@@ -105,7 +102,7 @@ Error handling is done via C++ exceptions
 ```c++
 try {
 	ogls::SolidColorShader frags(ogls::RED);
-	auto prog = ogls::Program().addShader(frags).link();
+	auto prog = ogls::Program().addShader(frags).use();
 } catch ogls::ProgramException {
 
 } catch ogls::ShaderException {
