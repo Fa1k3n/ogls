@@ -18,12 +18,17 @@ ExternalProject_Add(
     LOG_CONFIGURE ON
     LOG_BUILD ON)
 
-ExternalProject_Get_Property(googletest binary_dir)
+ExternalProject_Get_Property(googletest binary_dir source_dir)
+message(STATUS "source dir ${source_dir} ")
+
+set(gtest_INCLUDE_DIR ${source_dir}/googletest/include)
+set(gmock_INCLUDE_DIR ${source_dir}/googlemock/include)
 
 add_library(gtest UNKNOWN IMPORTED)
 add_library(gtest_main UNKNOWN IMPORTED)
 set_target_properties(gtest PROPERTIES
     IMPORTED_LOCATION ${binary_dir}/googlemock/gtest/libgtest.a
+    PUBLIC_HEADERS ${gtest_INCLUDE_DIR}
 )
 set_target_properties(gtest_main PROPERTIES
     IMPORTED_LOCATION ${binary_dir}/googlemock/gtest/libgtest_main.a
@@ -35,6 +40,7 @@ add_library(gmock UNKNOWN IMPORTED)
 add_library(gmock_main UNKNOWN IMPORTED)
 set_target_properties(gmock PROPERTIES
     IMPORTED_LOCATION ${binary_dir}/googlemock/libgmock.a
+    PUBLIC_HEADERS ${gmock_INCLUDE_DIR}
 )
 set_target_properties(gmock_main PROPERTIES
     IMPORTED_LOCATION ${binary_dir}/googlemock/libgmock_main.a

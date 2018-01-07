@@ -10,6 +10,10 @@ set(sources
 )
 
 add_executable(unittest EXCLUDE_FROM_ALL ${sources})
+add_dependencies(glmock gtest)
+
+include_directories(${gtest_INCLUDE_DIR} ${gmock_INCLUDE_DIR})
+message("inc ${gmock_INCLUDE_DIR}")
 
 target_include_directories(
 	unittest
@@ -19,9 +23,9 @@ target_include_directories(
 
 target_link_libraries(
 	unittest
+	glmock
 	gtest
 	gmock
-	glmock
 	pthread
 	ogls
 	GL
