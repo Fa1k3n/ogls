@@ -9,16 +9,14 @@ before_install:
  - sudo wget https://downloads.sourceforge.net/project/glew/glew/2.1.0/glew-2.1.0.tgz
  - sudo tar xf glew-2.1.0.tgz
  - cd glew-2.1.0
- - sudo make
- - sudo make install
- - cd ..
- - pip install --user cpp-coveralls
+ - make && sudo make install
+ - cd .. && pip install --user cpp-coveralls
 script: 
   - mkdir build && cd build
   - cmake -DCOVERAGE=1 .. && make && make unittest
   - ./test/unittest
 after_success:
+  - make apidoc
   - cd ..
   - coveralls --root . -e build/test -e test -e glew-2.1.0 -E ".*gtest.*" -E ".*CMakeFiles.*" -E ".*colors.*\.hpp" 
-  - doxygen docs/doxy.conf
   - sudo .travis/push.sh

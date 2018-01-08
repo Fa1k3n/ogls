@@ -72,6 +72,34 @@ set_property(TARGET ogls PROPERTY PUBLIC_HEADER ${headers})
 
 target_link_libraries(ogls /usr/lib64/libGLEW.a)
 
+find_package(Doxygen)
+
+if(DOXYGEN_FOUND)
+
+set(DOXYGEN_INPUT ${PROJECT_SOURCE_DIR}/docs/doxy.conf)
+set(DOXYGEN_OUTPUT ${PROJECT_BINARY_DIR}/docs/html)
+
+message(STATUS "Docs output ${DOXYGEN_OUTPUT}")
+
+add_custom_command(
+  OUTPUT ${DOXYGEN_OUTPUT}
+  COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation..."
+  COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_INPUT}
+  COMMAND ${CMAKE_COMMAND} -E echo "Done."
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+  DEPENDS ${DOXYGEN_INPUT}
+  )
+
+add_custom_target(apidoc ALL DEPENDS ${DOXYGEN_OUTPUT})
+
+add_custom_target(apidoc_forced
+  COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation..."
+  COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_INPUT}
+  COMMAND ${CMAKE_COMMAND} -E echo "Done."
+  WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
+
+endif(DOXYGEN_FOUND)
+
 export(TARGETS ogls FILE 
 	"${PROJECT_BINARY_DIR}/oglsTargets.cmake")
 export(PACKAGE ogls)

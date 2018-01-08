@@ -13,7 +13,7 @@ commit_website_files() {
 
 upload_files() {
   git remote add origin-pages https://${GITHUB_TOKEN}@github.com/fa1k3n/ogls.git > /dev/null 2>&1
-  git push origin-pages documentation
+  git push -f origin-pages documentation
 }
 
 setup_git
