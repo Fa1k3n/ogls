@@ -25,15 +25,33 @@ namespace ogls {
 
 	private:
 		Shader* getShaderByType(GLenum type);
+		void checkErrors();
 
 		std::vector<Shader*> m_shaders;
 		GLuint m_id;
 		bool m_isLinked;
 	};
 
+	//! set a uniform value
+	/*!	
+		
+		will throw exception if uniform with given name does not exists
+
+		Example 
+		\code{.cpp}
+		p.setUniform("my1dUni", {1.0f}).setUniform("my3dUni", {1.0f, 1.0f, 1.0f})
+		\endcode
+	*/
+	//!	\param name the name of the uniform
+	//!	\param v an initializer list to initialize the value to
+	//! \returns referens to object 
 	template <typename T>
 	Program& Program::setUniform(const GLchar *name, std::initializer_list<T> v) {
 		int loc = glGetUniformLocation(m_id, name);
+		if (loc == -1) 
+			throw ProgramException("Failed to get uniform location");
+		checkErrors();
+
 		std::vector<T> values(v);
 	
 		switch (values.size()) {

@@ -26,7 +26,6 @@ namespace ogls {
 		virtual Shader& addSource(std::string source);
 		virtual Shader& compile();
 		virtual Shader& setVersion(short major, short minor);
-
 		virtual Shader& operator<<(std::string source);
 
 	protected:

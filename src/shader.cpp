@@ -66,7 +66,7 @@ Shader& Shader::addSource(std::istream &stream) {
 		"int main(void) {"
 		"	gl_FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);"
 		"}"
-	)
+	);
 	\endcode
 	if unsuccessful will throw an ShaderExpection
 */ 
@@ -80,6 +80,20 @@ Shader& Shader::addSource(std::string source) {
 	return *this;
 }
 
+//! add a string source to the shader
+/*!
+	the added block will be added last to the
+	currently added code
+
+	Example
+	\code{.cpp}
+	auto shdr = Shader(FragmentShader) << "foo" << "bar";
+	\endcode
+	if unsuccessful will throw an ShaderExpection
+*/ 
+//! \param source is a string source
+//! \returns referens to object
+//! \sa addSource(std::istream)
 Shader& Shader::operator<<(std::string source) {
 	return addSource(source);
 }

@@ -136,6 +136,15 @@ TEST_F(ProgramTest, setFloatUniform) {
 	ogls::Program().setUniform<float>("baz", {1.0f, 0.9f, 0.8f});
 }
 
+TEST_F(ProgramTest, unknownUniformWillThrow) {
+	EXPECT_CALL(m_glMock, gl_GetUniformLocation(1, "baz")).WillOnce(Return(-1)).WillRepeatedly(Return(1));
+	EXPECT_THROW(ogls::Program().setUniform<float>("baz", {1.0f}), ogls::ProgramException);
+	EXPECT_CALL(m_glMock, gl_GetError()).WillOnce(Return(GL_INVALID_VALUE)).WillOnce(Return(GL_INVALID_OPERATION)).WillOnce(Return(2));
+
+	for(int i = 0; i < 3; i++)
+		EXPECT_THROW(ogls::Program().setUniform<float>("baz", {1.0f}), ogls::ProgramException);
+}
+
 TEST_F(ProgramTest, shaderExceptionHasReadableErrors) {
 	EXPECT_CALL(m_glMock, gl_CreateProgram()).WillOnce(Return(0));
 

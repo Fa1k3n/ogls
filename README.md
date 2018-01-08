@@ -60,14 +60,18 @@ prog.use();
 
 ```
 
-Adding source to shader is easily done either via a string
+Adding source to shader is easily done either via a string using addSource or
+<< operator
 
 ```c++
-auto frags = ogls::FragmentShader().addSource("
+auto frags1 = ogls::FragmentShader().addSource("
 	int main() { 
 		gl_FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);
 	}
 ");
+
+auto frags2 = ogls::FragmentShader();
+frags2 << "int main() {" << "gl_FragColor = vec4(1.0f, 0.0f, 0.0f, 1.0f); }";
 ```
 
 or via an stream, e.g. file
