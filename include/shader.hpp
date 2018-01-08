@@ -3,26 +3,16 @@
 
 #include <GL/glew.h>
 
-#include <exception>
 #include <string>
 #include <istream>
 
 #include <vector>
 
+#include "exception.hpp"
 #include "colors.hpp"
 
 namespace ogls {
 	class Program;
-
-	struct ShaderException : public std::exception {
-		ShaderException(std::string err) {
-			m_err = err;
-		}
-		virtual const char * what () const throw () {
-      		return m_err.c_str();
-   		}
-   		std::string m_err;
-	};
 
 	class Shader {
 		friend Program;
@@ -37,19 +27,21 @@ namespace ogls {
 		virtual Shader& compile();
 		virtual Shader& setVersion(short major, short minor);
 
+		virtual Shader& operator<<(std::string source);
+
 	protected:
 		virtual bool isCompiled() { return m_isCompiled; }
 		virtual GLint id() { return m_id; }
 
 	private:
-		char* getVersionStr();
+		std::string getVersionStr();
 		void transferSources();
 
 		GLenum m_type;
 		GLint m_id;
 		bool m_isCompiled;
 		short m_version[2];
-		std::vector<const char*> m_sources;
+		std::vector<std::string> m_sources;
 	};
 
 	class VertexShader : public Shader {

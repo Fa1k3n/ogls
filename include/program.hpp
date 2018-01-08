@@ -9,18 +9,9 @@
 #include <initializer_list>
 
 #include "shader.hpp"
+#include "exception.hpp"
 
 namespace ogls {
-	struct ProgramException : public std::exception {
-		ProgramException(std::string err) {
-			m_err = err;
-		}
-		virtual const char * what () const throw () {
-      		return m_err.c_str();
-   		}
-   		std::string m_err;
-	};
-
 	class Program {
 	public:
 		Program();
@@ -30,6 +21,8 @@ namespace ogls {
 
 		Program& link();
 		Program& use();
+		Program& operator<<(Shader&);
+
 	private:
 		Shader* getShaderByType(GLenum type);
 

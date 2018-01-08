@@ -3,6 +3,7 @@
 #include "colors_priv.hpp"
 
 #include <stdio.h>
+#include <iostream>
 
 using namespace ogls;
 
@@ -73,10 +74,14 @@ Shader& Shader::addSource(std::istream &stream) {
 //! \returns referens to object
 //! \sa addSource(std::istream)
 Shader& Shader::addSource(std::string source) {
-	m_sources.push_back(source.c_str());	
+	m_sources.push_back(source);
 	transferSources();
 	m_isCompiled = false;
 	return *this;
+}
+
+Shader& Shader::operator<<(std::string source) {
+	return addSource(source);
 }
 
 //! compiles the shader
@@ -120,14 +125,20 @@ Shader& Shader::setVersion(short major, short minor) {
 	return *this;
 }
 
-char* Shader::getVersionStr() {
-	static char str[100];
+std::string Shader::getVersionStr() {
+	static char str[150];
 	sprintf(str, "#version %d%d core", m_version[0], m_version[1]);
-	return str;
+	return std::string(str);
 }
 
 void Shader::transferSources() {
-	glShaderSource(m_id, m_sources.size(), &m_sources[0], NULL);
+	const char** sources = (const char**)malloc(m_sources.size()*sizeof(char *));
+	for (unsigned int i = 0; i < m_sources.size(); i ++) 
+		sources[i] = m_sources[i].c_str();
+
+	glShaderSource(m_id, m_sources.size(), &sources[0], NULL);
+	free(sources);
+	
 	GLenum err = glGetError();
 	if(err != GL_NO_ERROR) {
 		if(err == GL_INVALID_VALUE)

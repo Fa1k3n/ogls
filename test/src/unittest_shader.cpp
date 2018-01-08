@@ -128,7 +128,8 @@ TEST_F(ShaderTest, setVersion) {
 }
 
 TEST_F(ShaderTest, errorCanBeThrownWhenAddingShader) {
-	EXPECT_CALL(m_glMock, gl_GetError()).WillOnce(Return(GL_INVALID_VALUE)).WillOnce(Return(GL_INVALID_OPERATION));
+	EXPECT_CALL(m_glMock, gl_GetError()).WillOnce(Return(GL_INVALID_VALUE)).WillOnce(Return(GL_INVALID_OPERATION)).WillOnce(Return(3));
+	EXPECT_THROW(ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar"), ogls::ShaderException);
 	EXPECT_THROW(ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar"), ogls::ShaderException);
 	EXPECT_THROW(ogls::Shader(GL_VERTEX_SHADER).addSource("foo bar"), ogls::ShaderException);
 }
@@ -163,4 +164,13 @@ TEST_F(ShaderTest, addStream) {
 	ss << "foo bar";
 	EXPECT_CALL(m_glMock, gl_ShaderSource(_, 1, SourceMatches(EXP_SRCS("foo bar")), NULL));
 	ogls::Shader(GL_VERTEX_SHADER).addSource(ss);
+}
+
+TEST_F(ShaderTest, possibleToUseStreamOperator) {
+	EXPECT_CALL(m_glMock, gl_ShaderSource(_, 1, SourceMatches(EXP_SRCS("foo bar")), NULL));
+	EXPECT_CALL(m_glMock, gl_ShaderSource(_, 2, SourceMatches(EXP_SRCS("foo bar", "baz")), NULL));
+
+	auto shdr = ogls::Shader(GL_FRAGMENT_SHADER);
+	shdr << "foo bar" << "baz";
+
 }

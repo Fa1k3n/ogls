@@ -145,3 +145,21 @@ TEST_F(ProgramTest, shaderExceptionHasReadableErrors) {
 		ASSERT_STREQ("Failed to create program", e.what());
 	}
 }
+
+TEST_F(ProgramTest, possibleToUseStreamOperator) {
+	NiceMock<ShaderMock> otherShader;
+
+	// One vertex shader wih id 4
+	EXPECT_CALL(otherShader, type()).WillRepeatedly(Return(GL_VERTEX_SHADER));
+	EXPECT_CALL(otherShader, id()).WillOnce(Return(4));
+
+	// One fragment shader with id 3
+	EXPECT_CALL(m_shaderMock, id()).WillOnce(Return(3));
+
+	// Program id is 1, attach each shader
+	EXPECT_CALL(m_glMock, gl_AttachShader(1, 3));
+	EXPECT_CALL(m_glMock, gl_AttachShader(1, 4));
+
+	ogls::Program p; 
+	p << otherShader << m_shaderMock;
+}

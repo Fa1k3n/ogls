@@ -57,11 +57,13 @@ set(headers
 	include/shader.hpp
 	include/program.hpp
 	include/colors.hpp
+  include/exception.hpp
 )
 
 set(sources
    src/shader.cpp
    src/program.cpp
+   src/exception.cpp
    src/colors_priv.hpp
  )
 

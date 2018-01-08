@@ -76,3 +76,7 @@ Program& Program::use() {
 	return *this;
 }		
 
+Program& Program::operator<<(Shader& shdr) {
+	addShader(shdr);
+	return *this;
+}
