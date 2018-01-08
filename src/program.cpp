@@ -101,7 +101,7 @@ Program& Program::use() {
 	glUseProgram(m_id);
 	checkErrors();
 	return *this;
-}		
+}
 
 Shader* Program::getShaderByType(GLenum type) {
 	int i = 0;
@@ -124,4 +124,12 @@ void Program::checkErrors() {
 		else
 			throw ProgramException("unknown error occurred");
 	}
+}
+
+int Program::glGetUniformLocationAndCheckError(const GLchar* name) {
+	int loc = glGetUniformLocation(m_id, name);
+	if (loc == -1) 
+		throw ProgramException("Failed to get uniform location");
+	checkErrors();
+	return loc;
 }

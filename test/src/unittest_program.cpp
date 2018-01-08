@@ -131,9 +131,35 @@ TEST_F(ProgramTest, setFloatUniform) {
 	EXPECT_CALL(m_glMock, gl_Uniform1f(1, 1.0f));
 	EXPECT_CALL(m_glMock, gl_Uniform2f(1, 1.0f, 0.9f));
 	EXPECT_CALL(m_glMock, gl_Uniform3f(1, 1.0f, 0.9f, 0.8f));
-	ogls::Program().setUniform<float>("baz", {1.0f});
-	ogls::Program().setUniform<float>("baz", {1.0f, 0.9f});
-	ogls::Program().setUniform<float>("baz", {1.0f, 0.9f, 0.8f});
+	EXPECT_CALL(m_glMock, gl_Uniform4f(1, 1.0f, 0.9f, 0.8f, 0.7f));
+	ogls::Program().setUniform("baz", 1.0f);
+	ogls::Program().setUniform("baz", 1.0f, 0.9f);
+	ogls::Program().setUniform("baz", 1.0f, 0.9f, 0.8f);
+	ogls::Program().setUniform("baz", 1.0f, 0.9f, 0.8f, 0.7f);
+}
+
+TEST_F(ProgramTest, setIntUniform) {
+	EXPECT_CALL(m_glMock, gl_GetUniformLocation(1, "baz")).WillRepeatedly(Return(1));
+	EXPECT_CALL(m_glMock, gl_Uniform1i(1, 1.));
+	EXPECT_CALL(m_glMock, gl_Uniform2i(1, 1, 1));
+	EXPECT_CALL(m_glMock, gl_Uniform3i(1, 1, 1, 1));
+	EXPECT_CALL(m_glMock, gl_Uniform4i(1, 1, 1, 1, 1));
+	ogls::Program().setUniform("baz", 1);
+	ogls::Program().setUniform("baz", 1, 1);
+	ogls::Program().setUniform("baz", 1, 1, 1);
+	ogls::Program().setUniform("baz", 1, 1, 1, 1);
+}
+
+TEST_F(ProgramTest, setUnsignedIntUniform) {
+	EXPECT_CALL(m_glMock, gl_GetUniformLocation(1, "baz")).WillRepeatedly(Return(1));
+	EXPECT_CALL(m_glMock, gl_Uniform1ui(1, 1));
+	EXPECT_CALL(m_glMock, gl_Uniform2ui(1, 1, 1));
+	EXPECT_CALL(m_glMock, gl_Uniform3ui(1, 1, 1, 1));
+	EXPECT_CALL(m_glMock, gl_Uniform4ui(1, 1, 1, 1, 1));
+	ogls::Program().setUniform("baz", 1U);
+	ogls::Program().setUniform("baz", 1U, 1U);
+	ogls::Program().setUniform("baz", 1U, 1U, 1U);
+	ogls::Program().setUniform("baz", 1U, 1U, 1U, 1U);
 }
 
 TEST_F(ProgramTest, unknownUniformWillThrow) {

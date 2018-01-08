@@ -64,6 +64,7 @@ set(sources
    src/shader.cpp
    src/program.cpp
    src/exception.cpp
+   src/uniforms.cpp
    src/colors_priv.hpp
  )
 
